@@ -23,7 +23,6 @@ def generar_plantilla(df_validado: pd.DataFrame) -> pd.DataFrame:
     df_plantilla1['Importe'] = df_plantilla1['Importe'].astype(float).abs()
     df_plantilla1 = df_plantilla1.rename(columns={'Importe': 'Importe en la moneda del documento'})
     df_plantilla1 = df_plantilla1.rename(columns={'Div.': 'División'})
-    df_plantilla1 = df_plantilla1.rename(columns={'CeBe': 'Centro de coste'})
     df_plantilla1['Fecha_Valor'] = pd.to_datetime(df_plantilla1['Fecha_Valor']).dt.strftime("%d%m%Y")
     df_plantilla1 = df_plantilla1.rename(columns={'Fecha_Valor': 'Fecha valor'})
     df_plantilla1 = df_plantilla1.rename(columns={'VP': 'Vía de pago'})
@@ -42,14 +41,11 @@ def generar_plantilla(df_validado: pd.DataFrame) -> pd.DataFrame:
     df_plantilla1['Clave de Moneda'] = clave_moneda
     df_plantilla1['Fe.conversión '] = ""
     df_plantilla1['Texto de Cebecera'] = txt_cabecera
-    df_plantilla1['Calc. Impuestos '] = np.select([(df_plantilla1['Cuenta de mayor de la contabilidad principal'] == "4101101000")],                    
-                                                ["X"],
-                                                default="")
     df_plantilla1['Clave de contabilización para la siguiente posición'] = df_plantilla1['Clave NC']
-    df_plantilla1['Número de identificación fiscal 1'] = np.select([(df_plantilla1['Cuenta de mayor de la contabilidad principal'] == "1074010000") | (df_plantilla1['Cuenta de mayor de la contabilidad principal'] == "1074103000")],
-                                                                [df_plantilla1['Nit']],
-                                                                default="")
-    df_plantilla1['Tipo de número de identificación fiscal'] = np.select([(df_plantilla1['Cuenta de mayor de la contabilidad principal'] == "1074010000") | (df_plantilla1['Cuenta de mayor de la contabilidad principal'] == "1074103000")],
+    df_plantilla1['Número de identificación fiscal 1'] = np.select([df_plantilla1['Número de identificación fiscal 1'] == "X"],
+                                                                   [df_plantilla1['Nit']],
+                                                                   default="")
+    df_plantilla1['Tipo de número de identificación fiscal'] = np.select([df_plantilla1['Tipo de número de identificación fiscal'] == "X"],
                                                                         ["31"],
                                                                         default="")
     df_plantilla1['In. CME'] = ""
@@ -63,8 +59,8 @@ def generar_plantilla(df_validado: pd.DataFrame) -> pd.DataFrame:
     df_plantilla1['inENEador retetimbre WT_WITHCD'] = ""
     df_plantilla1['Tp retetimbre WITHT'] = ""
     df_plantilla1['Clave de conENEiones de pago'] = ""
-    df_plantilla1['Centro de coste'] = np.select([(df_plantilla1['Cuenta de mayor de la contabilidad principal'] == "4101101000")],                    
-                                                [df_plantilla1['Centro de coste']],
+    df_plantilla1['Centro de coste'] = np.select([df_plantilla1['Centro de coste'] == "X"],                    
+                                                [df_plantilla1['CeBe']],
                                                 default="")
     df_plantilla1['Centro de beneficio'] = ""
     df_plantilla1['Días del descuento por pronto pago 1'] = ""
@@ -95,7 +91,6 @@ def generar_plantilla(df_validado: pd.DataFrame) -> pd.DataFrame:
     df_plantilla2['Importe'] = df_plantilla2['Importe'].astype(float).abs()
     df_plantilla2 = df_plantilla2.rename(columns={'Importe': 'Importe en la moneda del documento'})
     df_plantilla2 = df_plantilla2.rename(columns={'Div.': 'División'})
-    df_plantilla2 = df_plantilla2.rename(columns={'CeBe': 'Centro de coste'})
     df_plantilla2['Fecha_Valor'] = pd.to_datetime(df_plantilla2['Fecha_Valor']).dt.strftime("%d%m%Y")
     df_plantilla2 = df_plantilla2.rename(columns={'Fecha_Valor': 'Fecha valor'})
     df_plantilla2 = df_plantilla2.rename(columns={'VP': 'Vía de pago'})
@@ -114,14 +109,11 @@ def generar_plantilla(df_validado: pd.DataFrame) -> pd.DataFrame:
     df_plantilla2['Clave de Moneda'] = clave_moneda
     df_plantilla2['Fe.conversión '] = ""
     df_plantilla2['Texto de Cebecera'] = txt_cabecera
-    df_plantilla2['Calc. Impuestos '] = np.select([(df_plantilla2['Cuenta de mayor de la contabilidad principal'] == "4101101000")],                    
-                                                ["X"],
-                                                default="")
     df_plantilla2['Clave de contabilización para la siguiente posición'] = df_plantilla2['Clave Producción']
-    df_plantilla2['Número de identificación fiscal 1'] = np.select([(df_plantilla2['Cuenta de mayor de la contabilidad principal'] == "1074010000") | (df_plantilla2['Cuenta de mayor de la contabilidad principal'] == "1074103000")],
-                                                                [df_plantilla2['Nit']],
-                                                                default="")
-    df_plantilla2['Tipo de número de identificación fiscal'] = np.select([(df_plantilla2['Cuenta de mayor de la contabilidad principal'] == "1074010000") | (df_plantilla2['Cuenta de mayor de la contabilidad principal'] == "1074103000")],
+    df_plantilla2['Número de identificación fiscal 1'] = np.select([df_plantilla2['Número de identificación fiscal 1'] == "X"],
+                                                                   [df_plantilla2['Nit']],
+                                                                   default="")
+    df_plantilla2['Tipo de número de identificación fiscal'] = np.select([df_plantilla2['Tipo de número de identificación fiscal'] == "X"],
                                                                         ["31"],
                                                                         default="")
     df_plantilla2['In. CME'] = ""
@@ -135,8 +127,8 @@ def generar_plantilla(df_validado: pd.DataFrame) -> pd.DataFrame:
     df_plantilla2['inENEador retetimbre WT_WITHCD'] = ""
     df_plantilla2['Tp retetimbre WITHT'] = ""
     df_plantilla2['Clave de conENEiones de pago'] = ""
-    df_plantilla2['Centro de coste'] = np.select([(df_plantilla2['Cuenta de mayor de la contabilidad principal'] == "4101101000")],                    
-                                                [df_plantilla2['Centro de coste']],
+    df_plantilla2['Centro de coste'] = np.select([df_plantilla2['Centro de coste'] == "X"],                    
+                                                [df_plantilla2['CeBe']],
                                                 default="")
     df_plantilla2['Centro de beneficio'] = ""
     df_plantilla2['Días del descuento por pronto pago 1'] = ""

@@ -1,11 +1,11 @@
 import pandas as pd
 
-def validar_diferencias(df_importado: pd.DataFrame, df_cabecera: pd.DataFrame, df_claves: pd.DataFrame) -> pd.DataFrame:
+def validar_diferencias(df_importado: pd.DataFrame, df_cabecera: pd.DataFrame, df_parametros: pd.DataFrame) -> pd.DataFrame:
 
     # Cruce de df_importado con df_cabecera
     df_importado = df_importado.merge(df_cabecera, on='Referencia', how='inner')
-    # Cruce de df_importado con df_claves
-    df_importado = df_importado.merge(df_claves, on='Lib.mayor', how='left')
+    # Cruce de df_importado con df_parametros
+    df_importado = df_importado.merge(df_parametros, on='Lib.mayor', how='left')
 
     # Descartar referencias que ya hayan sido corregidas
     df_importado = df_importado.loc[df_importado['Texto cab.documento'] != 'ACTUALIZA TRM']
