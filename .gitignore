@@ -1,3 +1,25 @@
-/01.Input
-/02.Output
+### Virtualenv ###
+*\venv
+ 
+# Configuraciones
+*\config
+*\01.Input
+*\02.Output
+.env
+*.sql
+ 
+# Variables de Entorno
+.env
+ 
+## Byte-compiled / optimized / DLL files
+#*\__pycache__
+*\__pycache__\*
+*.pyc
+*.p
+ 
+### Customs ###
 *.xlsx
+*.ipynb
+*.log
+*.docx
+*.csv
