@@ -14,9 +14,11 @@
 *\__pycache__\*
 *.pyc
 *.p
- 
+
 ### Customs ###
+*.ipynb
 *.xlsx
 *.log
 *.docx
 *.csv
+*.pdf

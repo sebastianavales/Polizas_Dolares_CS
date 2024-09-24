@@ -52,7 +52,7 @@ def ejecucion_general():
     df_importado, df_cabecera, df_parametros = leer_archivos(archivo_detalle,archivo_cabecera,archivo_parametros,dict_detalle,dict_cabecera,dict_parametros)
 
     df_validado = validar_diferencias(df_importado,df_cabecera,df_parametros)
-
+    
     df_plantilla_final = generar_plantilla(df_validado)
 
     df_plantilla_final.to_excel(f"{ruta_output}\Plantilla_Ajustes_TRM.xlsx", index=False)
